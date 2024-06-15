@@ -37,7 +37,7 @@ class QuoteOfTheDay extends StatefulWidget {
 
 class _QuoteOfTheDayState extends State<QuoteOfTheDay> {
   int currentPageIndex = 0;
-
+  bool? saveSelected = false;
 
   @override
   Widget build(BuildContext context) {
@@ -106,6 +106,28 @@ class _QuoteOfTheDayState extends State<QuoteOfTheDay> {
                           fontFamily: GoogleFonts.jetBrainsMono().fontFamily,
                           fontStyle: FontStyle.italic),
                     ),
+                  ),
+                  ButtonBar(
+                    alignment: MainAxisAlignment.spaceBetween,
+                    children: <Widget>[
+                      FilledButton.icon(
+                        onPressed: () {},
+                        icon: const Icon(Icons.share_outlined),
+                        label: const Text('Share'),
+                      ),
+                      IconButton.filledTonal(
+                        tooltip: 'Save',
+                        isSelected: saveSelected,
+                        onPressed: () {
+                          setState(() {
+                              saveSelected = !saveSelected!;
+                            },
+                          );
+                        },
+                        icon: const Icon(Icons.bookmark_border_rounded),
+                        selectedIcon: const Icon(Icons.bookmark_outlined),
+                      ),
+                    ],
                   ),
                 ],
               ),
