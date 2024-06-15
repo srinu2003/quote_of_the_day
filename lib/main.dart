@@ -38,6 +38,7 @@ class QuoteOfTheDay extends StatefulWidget {
 class _QuoteOfTheDayState extends State<QuoteOfTheDay> {
   int currentPageIndex = 0;
 
+
   @override
   Widget build(BuildContext context) {
     // ignore: unused_local_variable
