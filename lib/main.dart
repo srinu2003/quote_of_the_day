@@ -71,6 +71,31 @@ class _QuoteOfTheDayState extends State<QuoteOfTheDay> {
           ),
         ],
       ),
+
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            const Text(
+              'Quote of the Day',
+              style: TextStyle(fontSize: 24),
+            ),
+            const SizedBox(height: 20),
+            const Text(
+              '“The only way to do great work is to love what you do.”',
+              style: TextStyle(fontSize: 18),
+            ),
+            const SizedBox(height: 20),
+            ElevatedButton(
+              onPressed: () {
+                // ignore: avoid_print
+                print('I am feeling inspired!');
+              },
+              child: const Text('Inspire me!'),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }
