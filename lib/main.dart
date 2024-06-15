@@ -39,6 +39,17 @@ class _QuoteOfTheDayState extends State<QuoteOfTheDay> {
   int currentPageIndex = 0;
   bool? saveSelected = false;
 
+  // ignore: unused_element
+  void _changeQuote() {
+    setState(() {
+      // This call to setState tells the Flutter framework that something has
+      // changed in this State, which causes it to rerun the build method below
+      // so that the display can reflect the updated values.
+
+      // Change the Quote here
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     // ignore: unused_local_variable
@@ -76,6 +87,15 @@ class _QuoteOfTheDayState extends State<QuoteOfTheDay> {
             label: 'Bookmarks',
           ),
         ],
+      ),
+      floatingActionButton: FloatingActionButton.extended(
+        label: const Text('Inspire me'), // for Extended FAB
+        backgroundColor: Theme.of(context).colorScheme.tertiaryContainer,
+        foregroundColor: Theme.of(context).colorScheme.onTertiaryContainer,
+        onPressed: _changeQuote,
+        tooltip: 'Refresh',
+        icon: const Icon(Icons.auto_awesome_rounded), // for Extended FAB
+        // child: const Icon(Icons.refresh_rounded),
       ),
       body: <Widget>[
         /// Quote of the day Home Page
@@ -125,7 +145,7 @@ class _QuoteOfTheDayState extends State<QuoteOfTheDay> {
                           label: const Text('Share'),
                         ),
                         IconButton.filledTonal(
-                          tooltip: 'Save',
+                          tooltip: 'Bookmark',
                           isSelected: saveSelected,
                           onPressed: () {
                             setState(
