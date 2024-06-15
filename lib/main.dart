@@ -37,12 +37,12 @@ class QuoteOfTheDay extends StatefulWidget {
 
 class _QuoteOfTheDayState extends State<QuoteOfTheDay> {
   int currentPageIndex = 0;
-  
+
   @override
   Widget build(BuildContext context) {
     // ignore: unused_local_variable
     final ThemeData theme = Theme.of(context);
-    
+
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
@@ -71,27 +71,43 @@ class _QuoteOfTheDayState extends State<QuoteOfTheDay> {
           ),
         ],
       ),
-
       body: Center(
+        // Center is a layout widget. It takes a single child and positions it in the middle of the parent.
+
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            const Text(
-              'Quote of the Day',
-              style: TextStyle(fontSize: 24),
-            ),
-            const SizedBox(height: 20),
-            const Text(
-              '“The only way to do great work is to love what you do.”',
-              style: TextStyle(fontSize: 18),
-            ),
-            const SizedBox(height: 20),
-            ElevatedButton(
-              onPressed: () {
-                // ignore: avoid_print
-                print('I am feeling inspired!');
-              },
-              child: const Text('Inspire me!'),
+            Card.filled(
+              // DOUBT: What does margin do?
+              // DOUBT: What does EdgeInsetGeometry: const EdgeInsets.all(10.0), do?
+              margin:
+                  const EdgeInsets.symmetric(horizontal: 16.0, vertical: 16.0),
+              child: Column(
+                children: <Widget>[
+                  ListTile(
+                    // No leading widget, so the title is centered.
+                    title: Text(
+                      'The greatest glory in living lies not in never falling, but in rising every time we fall.',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontFamily: GoogleFonts.jetBrainsMono(
+                          fontWeight: FontWeight.bold,
+                        ).fontFamily,
+                        fontSize: 30.0,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.black87,
+                      ),
+                    ),
+                    subtitle: Text(
+                      '\n- Nelson Mandela',
+                      textAlign: TextAlign.right,
+                      style: TextStyle(
+                          fontFamily: GoogleFonts.jetBrainsMono().fontFamily,
+                          fontStyle: FontStyle.italic),
+                    ),
+                  ),
+                ],
+              ),
             ),
           ],
         ),
