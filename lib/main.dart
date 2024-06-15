@@ -36,14 +36,37 @@ class QuoteOfTheDay extends StatefulWidget {
 }
 
 class _QuoteOfTheDayState extends State<QuoteOfTheDay> {
+  int currentPageIndex = 0;
+  
   @override
   Widget build(BuildContext context) {
+    // ignore: unused_local_variable
+    final ThemeData theme = Theme.of(context);
+    
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        centerTitle: true,
       ),
+      bottomNavigationBar: NavigationBar(
+        selectedIndex: currentPageIndex,
+        onDestinationSelected: (int index) {
+          setState(() {
+            currentPageIndex = index;
+          });
+        },
+        destinations: const <NavigationDestination>[
+          NavigationDestination(
+            icon: Icon(Icons.home_rounded),
+            label: 'Home',
+          ),
+          NavigationDestination(
+            icon: Icon(Icons.bookmark_rounded),
+            label: 'Bookmarks',
+          ),
+        ],
+      ),
+      
     );
   }
 }
