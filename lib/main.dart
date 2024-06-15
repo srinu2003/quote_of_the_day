@@ -57,16 +57,20 @@ class _QuoteOfTheDayState extends State<QuoteOfTheDay> {
         },
         destinations: const <NavigationDestination>[
           NavigationDestination(
-            icon: Icon(Icons.home_rounded),
+            selectedIcon: Icon(Icons.home_rounded),
+            icon: Badge(child: Icon(Icons.home_outlined)),
             label: 'Home',
           ),
           NavigationDestination(
-            icon: Icon(Icons.bookmark_rounded),
+            selectedIcon: Icon(Icons.bookmark_rounded),
+            icon: Badge(
+              label: Text('2'),
+              child: Icon(Icons.bookmark_border_rounded),
+            ),
             label: 'Bookmarks',
           ),
         ],
       ),
-      
     );
   }
 }
