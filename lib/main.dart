@@ -29,6 +29,8 @@ class QuotesApp extends StatelessWidget {
 class QuoteOfTheDay extends StatefulWidget {
   const QuoteOfTheDay({super.key});
 
+  String get title => 'Quote of the Day';
+
   @override
   State<QuoteOfTheDay> createState() => _QuoteOfTheDayState();
 }
@@ -36,6 +38,12 @@ class QuoteOfTheDay extends StatefulWidget {
 class _QuoteOfTheDayState extends State<QuoteOfTheDay> {
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(widget.title),
+        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+        centerTitle: true,
+      ),
+    );
   }
 }
