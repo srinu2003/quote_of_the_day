@@ -21,11 +21,21 @@ class QuotesApp extends StatelessWidget {
           // This is the theme of my application.
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepOrange),
           useMaterial3: true),
-      home: const Scaffold(
-        body: Center(
-          child: Text('The Quote of the Day app!'),
-        ),
-      ),
+      home: const QuoteOfTheDay(),
     );
+  }
+}
+
+class QuoteOfTheDay extends StatefulWidget {
+  const QuoteOfTheDay({super.key});
+
+  @override
+  State<QuoteOfTheDay> createState() => _QuoteOfTheDayState();
+}
+
+class _QuoteOfTheDayState extends State<QuoteOfTheDay> {
+  @override
+  Widget build(BuildContext context) {
+    return const Placeholder();
   }
 }
