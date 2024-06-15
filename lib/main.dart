@@ -19,7 +19,7 @@ class QuotesApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
           // This is the theme of my application.
-          colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepOrange),
+          colorScheme: ColorScheme.fromSeed(seedColor: Colors.pinkAccent),
           useMaterial3: true),
       home: const QuoteOfTheDay(),
     );
@@ -53,7 +53,7 @@ class _QuoteOfTheDayState extends State<QuoteOfTheDay> {
   @override
   Widget build(BuildContext context) {
     // ignore: unused_local_variable
-    final ThemeData theme = Theme.of(context);
+    final ColorScheme theme = Theme.of(context).colorScheme;
 
     // ignore: unused_local_variable
     final List<String> savedQuotes = <String>[
@@ -63,7 +63,7 @@ class _QuoteOfTheDayState extends State<QuoteOfTheDay> {
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+        backgroundColor: theme.inversePrimary,
       ),
       bottomNavigationBar: NavigationBar(
         selectedIndex: currentPageIndex,
@@ -90,8 +90,8 @@ class _QuoteOfTheDayState extends State<QuoteOfTheDay> {
       ),
       floatingActionButton: FloatingActionButton.extended(
         label: const Text('Inspire me'), // for Extended FAB
-        backgroundColor: Theme.of(context).colorScheme.tertiaryContainer,
-        foregroundColor: Theme.of(context).colorScheme.onTertiaryContainer,
+        backgroundColor: theme.tertiaryContainer,
+        foregroundColor: theme.onTertiaryContainer,
         onPressed: _changeQuote,
         tooltip: 'Refresh',
         icon: const Icon(Icons.auto_awesome_rounded), // for Extended FAB
@@ -166,9 +166,10 @@ class _QuoteOfTheDayState extends State<QuoteOfTheDay> {
           ),
         ),
 
-        /// Bookmarks Page
-        /// This page will show the list of saved quotes.
-        /// The user can delete the quotes from the list.
+        /** Bookmarks Page
+         * This page will show the list of saved quotes.
+         * The user can delete the quotes from the list.
+        */
         const Padding(
           padding: EdgeInsets.all(8.0),
           child: Column(
