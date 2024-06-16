@@ -36,7 +36,7 @@ class QuoteOfTheDay extends StatefulWidget {
 }
 
 class _QuoteOfTheDayState extends State<QuoteOfTheDay> {
-  int currentPageIndex = 0;
+  int selectedTabIndex = 0;
   bool? saveSelected = false;
   // ignore: unused_field
   final bool _enableFAB = false;
@@ -68,10 +68,10 @@ class _QuoteOfTheDayState extends State<QuoteOfTheDay> {
         backgroundColor: theme.inversePrimary,
       ),
       bottomNavigationBar: NavigationBar(
-        selectedIndex: currentPageIndex,
+        selectedIndex: selectedTabIndex,
         onDestinationSelected: (int index) {
           setState(() {
-            currentPageIndex = index;
+            selectedTabIndex = index;
           });
         },
         destinations: const <NavigationDestination>[
@@ -90,7 +90,7 @@ class _QuoteOfTheDayState extends State<QuoteOfTheDay> {
           ),
         ],
       ),
-      floatingActionButton: currentPageIndex == 0
+      floatingActionButton: selectedTabIndex == 0
           ? FloatingActionButton.extended(
               label: const Text('Inspire me'), // for Extended FAB
               backgroundColor: theme.tertiaryContainer,
@@ -105,7 +105,7 @@ class _QuoteOfTheDayState extends State<QuoteOfTheDay> {
       body: <Widget>[
         /// Quote of the day Home Page
 
-        Center(
+        Center( 
           // Center is a layout widget. It takes a single child and positions it in the middle of the parent.
 
           child: Column(
@@ -195,7 +195,7 @@ class _QuoteOfTheDayState extends State<QuoteOfTheDay> {
             ],
           ),
         ),
-      ][currentPageIndex],
+      ][selectedTabIndex],
     );
   }
 }
