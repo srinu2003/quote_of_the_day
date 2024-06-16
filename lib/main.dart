@@ -90,15 +90,18 @@ class _QuoteOfTheDayState extends State<QuoteOfTheDay> {
           ),
         ],
       ),
-      floatingActionButton: FloatingActionButton.extended(
-        label: const Text('Inspire me'), // for Extended FAB
-        backgroundColor: theme.tertiaryContainer,
-        foregroundColor: theme.onTertiaryContainer,
-        onPressed: _changeQuote,
-        tooltip: 'Refresh',
-        icon: const Icon(Icons.auto_awesome_rounded), // for Extended FAB
-        // child: const Icon(Icons.refresh_rounded),
-      ),
+      floatingActionButton: currentPageIndex == 0
+          ? FloatingActionButton.extended(
+              label: const Text('Inspire me'), // for Extended FAB
+              backgroundColor: theme.tertiaryContainer,
+              foregroundColor: theme.onTertiaryContainer,
+              onPressed: _changeQuote,
+              tooltip: 'Refresh',
+              icon: const Icon(Icons.auto_awesome_rounded), // for Extended FAB
+              // child: const Icon(Icons.refresh_rounded),
+            )
+          : null,
+      floatingActionButtonAnimator: FloatingActionButtonAnimator.scaling,
       body: <Widget>[
         /// Quote of the day Home Page
 
