@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
+// ignore: unused_import
 import 'package:google_fonts/google_fonts.dart';
-// import 'package:quote_of_the_day/widgets/navigation_bar.dart';
+
 
 class QuoteOfTheDay extends StatefulWidget {
+  final String title;
+
   const QuoteOfTheDay({super.key, required this.title});
 
   // This widget is the home page of my application
-
-  final String title;
 
   @override
   State<QuoteOfTheDay> createState() => _QuoteOfTheDayState();
