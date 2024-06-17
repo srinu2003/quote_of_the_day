@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:quote_of_the_day/views/quote_of_the_day.dart';
+import 'package:quote_of_the_day/views/home_screen.dart';
 
 class QuotesApp extends StatelessWidget {
   const QuotesApp({super.key});
