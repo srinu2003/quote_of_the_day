@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-// ignore: unused_import
 import 'package:google_fonts/google_fonts.dart';
-
 
 class QuoteOfTheDay extends StatefulWidget {
   final String title;
@@ -17,10 +15,7 @@ class QuoteOfTheDay extends StatefulWidget {
 class _QuoteOfTheDayState extends State<QuoteOfTheDay> {
   int selectedTabIndex = 0;
   bool? saveSelected = false;
-  // ignore: unused_field
-  final bool _enableFAB = false;
 
-  // ignore: unused_element
   void _changeQuote() {
     setState(() {
       // This call to setState tells the Flutter framework that something has
@@ -31,21 +26,116 @@ class _QuoteOfTheDayState extends State<QuoteOfTheDay> {
     });
   }
 
+  PreferredSizeWidget? buildAppBar(ColorScheme theme) {
+    return AppBar(
+      title: Text(widget.title),
+      backgroundColor: theme.inversePrimary,
+    );
+  }
+
+  Widget? buildFloatingActionButton(ColorScheme theme) {
+    return selectedTabIndex == 0
+        ? FloatingActionButton.extended(
+            label: const Text('Inspire me'),
+            backgroundColor: theme.tertiaryContainer,
+            foregroundColor: theme.onTertiaryContainer,
+            onPressed: _changeQuote,
+            tooltip: 'Refresh',
+            icon: const Icon(Icons.auto_awesome_rounded),
+          )
+        : null;
+  }
+
+  Widget buildQuoteOfTheDay() {
+    return Center(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          Card.filled(
+            margin:
+                const EdgeInsets.symmetric(horizontal: 16.0, vertical: 16.0),
+            child: Column(
+              children: <Widget>[
+                ListTile(
+                  title: Text(
+                    'The greatest glory in living lies not in never falling, but in rising every time we fall.',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontFamily: GoogleFonts.jetBrainsMono(
+                        fontWeight: FontWeight.bold,
+                      ).fontFamily,
+                      fontSize: 30.0,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.black87,
+                    ),
+                  ),
+                  subtitle: Text(
+                    '\n- Nelson Mandela',
+                    textAlign: TextAlign.right,
+                    style: TextStyle(
+                      fontFamily: GoogleFonts.jetBrainsMono().fontFamily,
+                      fontStyle: FontStyle.italic,
+                    ),
+                  ),
+                ),
+                ButtonBar(
+                  alignment: MainAxisAlignment.spaceBetween,
+                  children: <Widget>[
+                    FilledButton.icon(
+                      onPressed: () {},
+                      icon: const Icon(Icons.share_outlined),
+                      label: const Text('Share'),
+                    ),
+                    IconButton(
+                      tooltip: 'Save to Bookmarks',
+                      isSelected: saveSelected,
+                      onPressed: () {
+                        setState(() {
+                          saveSelected = !saveSelected!;
+                        });
+                      },
+                      icon: const Icon(Icons.bookmark_border_rounded),
+                      selectedIcon: const Icon(Icons.bookmark_outlined),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget buildBookmarksPage() {
+    return const Padding(
+      padding: EdgeInsets.all(8.0),
+      child: Column(
+        children: <Widget>[
+          Card.outlined(
+            child: ListTile(
+              title: Text('Quote 1'),
+              subtitle: Text('This is a saved quote'),
+            ),
+          ),
+          Divider(),
+          Card.outlined(
+            child: ListTile(
+              title: Text('Quote 2'),
+              subtitle: Text('This is a saved quote'),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
-    // ignore: unused_local_variable
     final ColorScheme theme = Theme.of(context).colorScheme;
 
-    // ignore: unused_local_variable
-    final List<String> savedQuotes = <String>[
-      'Quote 1',
-      'Quote 2',
-    ];
     return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
-        backgroundColor: theme.inversePrimary,
-      ),
+      appBar: buildAppBar(theme),
       bottomNavigationBar: NavigationBar(
         selectedIndex: selectedTabIndex,
         onDestinationSelected: (int index) {
@@ -69,111 +159,11 @@ class _QuoteOfTheDayState extends State<QuoteOfTheDay> {
           ),
         ],
       ),
-      floatingActionButton: selectedTabIndex == 0
-          ? FloatingActionButton.extended(
-              label: const Text('Inspire me'), // for Extended FAB
-              backgroundColor: theme.tertiaryContainer,
-              foregroundColor: theme.onTertiaryContainer,
-              onPressed: _changeQuote,
-              tooltip: 'Refresh',
-              icon: const Icon(Icons.auto_awesome_rounded), // for Extended FAB
-              // child: const Icon(Icons.refresh_rounded),
-            )
-          : null,
+      floatingActionButton: buildFloatingActionButton(theme),
       floatingActionButtonAnimator: FloatingActionButtonAnimator.scaling,
       body: <Widget>[
-        /// Quote of the day Home Page
-
-        Center(
-          // Center is a layout widget. It takes a single child and positions it in the middle of the parent.
-
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              Card.filled(
-                // DOUBT: What does margin do?
-                // DOUBT: What does EdgeInsetGeometry: const EdgeInsets.all(10.0), do?
-                margin: const EdgeInsets.symmetric(
-                    horizontal: 16.0, vertical: 16.0),
-                child: Column(
-                  children: <Widget>[
-                    ListTile(
-                      // No leading widget, so the title is centered.
-                      // leading: Icon(Icons.album),
-                      title: Text(
-                        'The greatest glory in living lies not in never falling, but in rising every time we fall.',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          fontFamily: GoogleFonts.jetBrainsMono(
-                            fontWeight: FontWeight.bold,
-                          ).fontFamily,
-                          fontSize: 30.0,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.black87,
-                        ),
-                      ),
-                      subtitle: Text(
-                        '\n- Nelson Mandela',
-                        textAlign: TextAlign.right,
-                        style: TextStyle(
-                            fontFamily: GoogleFonts.jetBrainsMono().fontFamily,
-                            fontStyle: FontStyle.italic),
-                      ),
-                    ),
-                    ButtonBar(
-                      alignment: MainAxisAlignment.spaceBetween,
-                      children: <Widget>[
-                        FilledButton.icon(
-                          onPressed: () {},
-                          icon: const Icon(Icons.share_outlined),
-                          label: const Text('Share'),
-                        ),
-                        IconButton.filledTonal(
-                          tooltip: 'Bookmark',
-                          isSelected: saveSelected,
-                          onPressed: () {
-                            setState(
-                              () {
-                                saveSelected = !saveSelected!;
-                              },
-                            );
-                          },
-                          icon: const Icon(Icons.bookmark_border_rounded),
-                          selectedIcon: const Icon(Icons.bookmark_outlined),
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
-              ),
-            ],
-          ),
-        ),
-
-        /** Bookmarks Page
-         * This page will show the list of saved quotes.
-         * The user can delete the quotes from the list.
-        */
-        const Padding(
-          padding: EdgeInsets.all(8.0),
-          child: Column(
-            children: <Widget>[
-              Card.outlined(
-                child: ListTile(
-                  title: Text('Quote 1'),
-                  subtitle: Text('This is a saved quote'),
-                ),
-              ),
-              Divider(),
-              Card.outlined(
-                child: ListTile(
-                  title: Text('Quote 2'),
-                  subtitle: Text('This is a saved quote'),
-                ),
-              ),
-            ],
-          ),
-        ),
+        buildQuoteOfTheDay(),
+        buildBookmarksPage(),
       ][selectedTabIndex],
     );
   }

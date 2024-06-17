@@ -11,7 +11,7 @@ class QuotesApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
           // This is the theme of my application.
-          colorScheme: ColorScheme.fromSeed(seedColor: Colors.pinkAccent),
+          colorScheme: ColorScheme.fromSeed(seedColor: Colors.green),
           useMaterial3: true),
       home: const QuoteOfTheDay(title: 'Quote of the Day'),
     );
