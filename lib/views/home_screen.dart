@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:quote_of_the_day/models/quotes_api.dart';
 import 'package:quote_of_the_day/views/bookmarks_screen.dart';
 import 'package:quote_of_the_day/views/quote_screen.dart';
 
@@ -15,14 +16,24 @@ class QuoteOfTheDay extends StatefulWidget {
 
 class _QuoteOfTheDayState extends State<QuoteOfTheDay> {
   int selectedTabIndex = 0;
+  Quote? randomQuote = Quote(
+      'The greatest glory in living lies not in never falling, but in rising every time we fall.',
+      'Nelson Mandela');
 
-  void _changeQuote() {
+  void _changeQuote() async {
+    Quote? newQuote;
+
+    try {
+      newQuote = await fetchRandomQuote();
+    } catch (e) {
+      newQuote = Quote('Error!', 'Unknown');
+    }
+
     setState(() {
       // This call to setState tells the Flutter framework that something has
       // changed in this State, which causes it to rerun the build method below
       // so that the display can reflect the updated values.
-
-      // Change the Quote here
+      randomQuote = newQuote;
     });
   }
 
@@ -78,10 +89,9 @@ class _QuoteOfTheDayState extends State<QuoteOfTheDay> {
       ),
       floatingActionButton: buildFloatingActionButton(theme),
       body: <Widget>[
-        const QuoteCard(
-          quote:
-              'The greatest glory in living lies not in never falling, but in rising every time we fall.',
-          author: 'Nelson Mandela',
+        QuoteCard(
+          quote: randomQuote!.text,
+          author: randomQuote!.author,
         ),
         const BookmarksPage(),
       ][selectedTabIndex],
