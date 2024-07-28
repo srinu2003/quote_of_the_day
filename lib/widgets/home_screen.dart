@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:quote_of_the_day/models/quotes_api.dart';
-import 'package:quote_of_the_day/views/bookmarks_screen.dart';
-import 'package:quote_of_the_day/views/quote_screen.dart';
+import 'package:quote_of_the_day/widgets/bookmarks_screen.dart';
+import 'package:quote_of_the_day/widgets/quote_screen.dart';
 
 class QuoteOfTheDay extends StatefulWidget {
   final String title;
