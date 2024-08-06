@@ -1,32 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:quote_of_the_day/widgets/bookmark_icon.dart';
 
-class QuoteCard extends StatefulWidget {
-  final String quote;
-  final String author;
+import '../models/quote_model.dart';
+import '../repositories/quote_repository.dart';
+import '../components/bookmark_filled_icon_button.dart';
 
-  const QuoteCard({
-    super.key,
-    required this.quote,
-    required this.author,
-  });
+class QuoteScreen extends StatefulWidget {
+  final Quote quote;
+
+  /// This widget displays a quote
+  const QuoteScreen({super.key, required this.quote});
 
   @override
-  State<QuoteCard> createState() => _QuoteCardState();
+  State<QuoteScreen> createState() => _QuoteScreenState();
 }
 
-class _QuoteCardState extends State<QuoteCard> {
-  bool? saveSelected = false;
-
-  String get author => widget.author;
-  String get quote => widget.quote;
-
-  void _addBookmark() {
-    setState(() {
-      saveSelected = !saveSelected!;
-    });
-  }
+class _QuoteScreenState extends State<QuoteScreen> {
+  // bool? saveSelected = false;
+  Quote get showQuote => widget.quote;
 
   @override
   Widget build(BuildContext context) {
@@ -40,7 +31,7 @@ class _QuoteCardState extends State<QuoteCard> {
             children: <Widget>[
               ListTile(
                 title: Text(
-                  quote,
+                  showQuote.text,
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontFamily: GoogleFonts.jetBrainsMono(
@@ -52,7 +43,7 @@ class _QuoteCardState extends State<QuoteCard> {
                   ),
                 ),
                 subtitle: Text(
-                  '\n- $author',
+                  '\n- ${showQuote.author}',
                   textAlign: TextAlign.right,
                   style: TextStyle(
                     fontFamily: GoogleFonts.jetBrainsMono().fontFamily,
@@ -78,5 +69,11 @@ class _QuoteCardState extends State<QuoteCard> {
         ),
       ],
     );
+  }
+
+  void _addBookmark() {
+    setState(() {
+      QuoteRepository().updateBookmarkList(showQuote);
+    });
   }
 }
