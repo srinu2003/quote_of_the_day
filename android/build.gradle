@@ -17,8 +17,8 @@ tasks.register("clean", Delete) {
     delete rootProject.buildDir
 }
 
-dependencies {
-    // ...
-    implementation("com.google.android.material:material:<version>")
-    // ...
-}
+// dependencies {
+//     // ...
+//     implementation("com.google.android.material:material:<version>")
+//     // ...
+// }
